@@ -39,8 +39,8 @@ fn check_entry(first: u8, second: u8) -> bool {
         is_valid = false;
     }
 
-    if entry.s != second {
-        report_error("s", entry.s, second, first, second);
+    if entry.get_s() != second {
+        report_error("s", entry.get_s(), second, first, second);
         is_valid = false;
     }
 
@@ -57,8 +57,8 @@ fn check_entry(first: u8, second: u8) -> bool {
     }
 
     let expected_b = first < second;
-    if entry.b != expected_b {
-        report_error("b", entry.b, expected_b, first, second);
+    if entry.get_b() != expected_b {
+        report_error("b", entry.get_b(), expected_b, first, second);
         is_valid = false;
     }
 

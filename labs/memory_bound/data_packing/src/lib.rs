@@ -21,10 +21,31 @@ pub const MAX_RANDOM: u8 = 100;
 #[derive(Debug, Copy, Clone, Default)]
 pub struct S {
     pub i: u8,
+    /// The last bit is the b flag
+    /// ```
+    /// b_iii_iiii     
+    /// ```
     pub s: u8,
     pub l: i16,
     pub d: f32,
-    pub b: bool,
+}
+
+impl S {
+    fn set_b(&mut self, value: bool) {
+        self.s = self.s & !0b1_000_0000 | (value as u8) << 7;
+    }
+
+    fn get_b(&self) -> bool {
+        self.s >> 7 == 1
+    }
+
+    fn get_s(&self) -> u8 {
+        self.s & !(0b1_000_0000)
+    }
+
+    fn set_s(&mut self, value: u8) {
+        self.s = self.s & 0b1_000_0000 | value;
+    }
 }
 
 // C++ version overloads '<' operator like this:

@@ -1,13 +1,14 @@
 use crate::{MAX_RANDOM, MIN_RANDOM, N, S};
 
 pub fn create_entry(first_value: u8, second_value: u8) -> S {
-    S {
+    let mut res = S {
         i: first_value,
         l: first_value as i16 * second_value as i16,
         s: second_value,
         d: first_value as f32 / MAX_RANDOM as f32,
-        b: first_value < second_value,
-    }
+    };
+    res.set_b(first_value < second_value);
+    res
 }
 
 pub fn init() -> [S; N] {
